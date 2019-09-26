@@ -1,0 +1,58 @@
+<div class="container jumbotron">
+    <h1 id="first-heading" class="text-center"> Here is A Menu of Best Burgers In Town</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4> To be devoured </h4>
+            <ul>
+                {{#each burgers}}
+                {{#unless devoured}}
+                {{> burgers-block devoured=false}}
+                {{/unless}}
+                {{/each}}
+            </ul>
+
+            {{!-- {{#each burgers}}
+            {{#unless devoured}}
+            <div>
+                <li>
+                    {{burger_name}}
+                    <form action="/api/burgers/{{this.id}}?_method=PUT" method="PUT">
+                        <button type="submit" class='to-be-devoured'>Devoure It</button>
+                    </form>
+                </li>
+            </div>
+            {{/unless}}
+            {{/each}} --}}
+
+
+        </div>
+
+        <div class="col-md-6">
+            <h4> Here Lies The Devoured (RIP)</h4>
+            <ul>
+                {{#each burgers}}
+                {{#if devoured}}
+                <li class="burger-list">
+                    {{burger_name}}
+                </li>
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12" id="newburgerForm">
+            <form action="/api/burgers" method="POST">
+                <form id="form-id">
+                    <input type="text" id="burger-input" name="burger_name" placeholder="">
+                <button class="btn btn-primary" type=" submit" class="addButton">Add Your Meal!</button>
+                </form>
+        </div>
+    </div>
+
+</div>
